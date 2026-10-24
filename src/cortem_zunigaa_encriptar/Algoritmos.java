@@ -34,7 +34,7 @@ public class Algoritmos {
     }
     
     
-    public static List<Integer> algortimoPorBit(String texto,String key){
+    public static <T> List<Integer> algortimoPorBit(List<T> lista,String key){
         List<String> binariosP = new ArrayList<>(); 
         List<String> binariosK = new ArrayList<>(); 
         List<String> binariosR = new ArrayList<>(); 
@@ -42,8 +42,15 @@ public class Algoritmos {
        
         List<Integer> resultados = new ArrayList<>(); 
 
-        for(int i = 0; i < texto.length(); i++){
-            char caracterT = texto.charAt(i);
+        for(int i = 0; i < lista.size(); i++){
+            
+            T elemento = lista.get(i);
+            int caracterT = 0;
+            if (elemento instanceof Character) {
+                caracterT = (Character) elemento;
+            } else if (elemento instanceof Integer) {
+                caracterT = (Integer) elemento;
+            } 
             char caracterK = key.charAt(i % key.length());
             
             binariosP.add(Integer.toBinaryString(caracterT));
